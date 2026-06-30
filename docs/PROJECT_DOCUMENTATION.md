@@ -529,19 +529,11 @@ MCR and MSR currently read as zero. A complete UART may support:
 - DCD, RI.
 - Loopback mode.
 
-### 14.3 FIFO Depth Accounting
-
-The FIFO memory has 16 entries, but `full` is asserted when `cnt == 15`. That makes the usable capacity effectively 15 entries. This can be acceptable if intentional, but a conventional 16-entry FIFO would normally use all 16 entries and assert full at count 16.
-
-### 14.4 FIFO Enable
-
-The `fifo_top` module has an `en` input, and FCR stores `ena`, but pushes and pops are not gated by `en`. If strict FIFO-enable behavior is needed, `en` should control whether FIFO mode is active or whether the UART behaves like a single-byte holding register.
-
-### 14.5 RX Overrun Status
+### 14.3 RX Overrun Status
 
 In the current top-level wiring, the LSR overrun input is driven from the TX FIFO overrun signal. For 16550-style status, `LSR[1]` should report receive overrun, so the RX FIFO overrun signal should feed the register block.
 
-### 14.6 Assertion-Based Verification
+### 14.4 Assertion-Based Verification
 
 The current testbench demonstrates behavior very clearly through logs. For regression testing, add assertions such as:
 
@@ -553,14 +545,4 @@ The current testbench demonstrates behavior very clearly through logs. For regre
 - Framing error asserts when the stop bit is forced low.
 - Overrun asserts when pushing into a full RX FIFO.
 
-## 15. Suggested GitHub Description
 
-```text
-SystemVerilog 16550-style UART with programmable baud generation, parity/stop/data-length control, TX/RX FIFOs, register model, waveform captures, and verification testbench.
-```
-
-Suggested topics:
-
-```text
-systemverilog uart 16550 rtl fifo serial-communication digital-design verification
-```
