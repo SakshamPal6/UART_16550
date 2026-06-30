@@ -1,0 +1,22 @@
+# Simulator build/output directories
+work/
+INCA_libs/
+csrc/
+simv
+simv.daidir/
+*.vpd
+*.vcd
+*.fsdb
+*.wlf
+transcript
+
+# Tool/project cache files
+.Xil/
+*.jou
+*.log
+*.pb
+*.str
+
+# OS/editor noise
+.DS_Store
+Thumbs.db
